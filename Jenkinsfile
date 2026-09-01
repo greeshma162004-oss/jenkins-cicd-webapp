@@ -4,6 +4,10 @@ agent {
     label 'linux-agent'
 }
 
+options {
+    skipDefaultCheckout(true)
+}
+
 parameters {
 
     choice(
@@ -29,9 +33,13 @@ stages {
 
         steps {
 
-            echo 'Checking out source code from GitHub...'
+            echo 'Checking out source code from GitHub using SSH credentials...'
 
-            checkout scm
+            git(
+                url: 'git@github.com:greeshma162004-oss/jenkins-cicd-webapp.git',
+                branch: 'main',
+                credentialsId: 'github-shh'
+               )
         }
     }
 
