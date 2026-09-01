@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>DevOps CI/CD Deployment</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #0f172a, #1e293b);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1000px;
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+    .header h1 {
+        font-size: 42px;
+        margin-bottom: 12px;
+    }
+
+    .header p {
+        color: #cbd5e1;
+        font-size: 17px;
+    }
+
+    .status {
+        display: inline-block;
+        margin-top: 18px;
+        padding: 8px 18px;
+        border-radius: 20px;
+        background: #064e3b;
+        color: #6ee7b7;
+        font-weight: bold;
+    }
+
+    .card {
+        background: rgba(30, 41, 59, 0.9);
+        border: 1px solid #334155;
+        border-radius: 18px;
+        padding: 30px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .pipeline {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 15px;
+        margin: 25px 0 35px;
+    }
+
+    .stage {
+        text-align: center;
+        padding: 20px 10px;
+        background: #0f172a;
+        border-radius: 12px;
+        border: 1px solid #475569;
+    }
+
+    .stage .icon {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+    .stage h3 {
+        font-size: 15px;
+        margin-bottom: 7px;
+    }
+
+    .stage p {
+        color: #6ee7b7;
+        font-size: 13px;
+    }
+
+    .details {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+
+    .detail {
+        background: #0f172a;
+        padding: 18px;
+        border-radius: 12px;
+        border-left: 4px solid #38bdf8;
+    }
+
+    .detail span {
+        display: block;
+        color: #94a3b8;
+        font-size: 13px;
+        margin-bottom: 7px;
+    }
+
+    .detail strong {
+        font-size: 17px;
+    }
+
+    .footer {
+        text-align: center;
+        margin-top: 25px;
+        color: #94a3b8;
+        font-size: 13px;
+    }
+
+    @media (max-width: 700px) {
+        .pipeline,
+        .details {
+            grid-template-columns: 1fr;
+        }
+
+        .header h1 {
+            font-size: 30px;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+<div class="container">
+
+```
+<div class="header">
+    <h1>🚀 DevOps CI/CD Pipeline</h1>
+
+    <p>
+        Automated application delivery using Jenkins, Docker and Nginx
+    </p>
+
+    <div class="status">
+        ● DEPLOYMENT SUCCESSFUL
+    </div>
+</div>
+
+<div class="card">
+
+    <h2>Pipeline Status</h2>
+
+    <div class="pipeline">
+
+        <div class="stage">
+            <div class="icon">📦</div>
+            <h3>GitHub</h3>
+            <p>✓ Complete</p>
+        </div>
+
+        <div class="stage">
+            <div class="icon">⚙️</div>
+            <h3>Jenkins</h3>
+            <p>✓ Complete</p>
+        </div>
+
+        <div class="stage">
+            <div class="icon">🧪</div>
+            <h3>Testing</h3>
+            <p>✓ Passed</p>
+        </div>
+
+        <div class="stage">
+            <div class="icon">🐳</div>
+            <h3>Docker</h3>
+            <p>✓ Built</p>
+        </div>
+
+        <div class="stage">
+            <div class="icon">🌐</div>
+            <h3>Nginx</h3>
+            <p>✓ Deployed</p>
+        </div>
+
+    </div>
+
+    <div class="details">
+
+        <div class="detail">
+            <span>Application</span>
+            <strong>DevOps WebApp</strong>
+        </div>
+
+        <div class="detail">
+            <span>Environment</span>
+            <strong>Production</strong>
+        </div>
+
+        <div class="detail">
+            <span>Deployment</span>
+            <strong>Automated</strong>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    Built with Jenkins • Docker • Nginx • GitHub
+</div>
+```
+
+</div>
+
+</body>
+</html>
