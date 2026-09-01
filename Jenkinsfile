@@ -38,7 +38,7 @@ stages {
             git(
                 url: 'git@github.com:greeshma162004-oss/jenkins-cicd-webapp.git',
                 branch: 'main',
-                credentialsId: 'github-shh'
+                credentialsId: 'github-ssh'
                )
         }
     }
