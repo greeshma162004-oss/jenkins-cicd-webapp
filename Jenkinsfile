@@ -1,11 +1,5 @@
 pipeline {
 
-```
-/*
- * The pipeline will eventually run on Jenkins Agent (Instance 2).
- * We will configure the agent label after confirming the label
- * assigned to your Instance 2.
- */
 agent {
         label 'linux'
     }
