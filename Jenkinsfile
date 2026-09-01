@@ -1,8 +1,9 @@
 pipeline {
 
+```
 agent {
-        label 'linux'
-    }
+    label 'linux'
+}
 
 parameters {
 
@@ -18,9 +19,9 @@ environment {
     IMAGE_NAME = 'jenkins-cicd-webapp'
     CONTAINER_NAME = 'jenkins-cicd-webapp'
 
-    DEV_PORT = '5000'
-    TEST_PORT = '5001'
-    PROD_PORT = '5002'
+    DEV_PORT = '5001'
+    TEST_PORT = '5002'
+    PROD_PORT = '5003'
 }
 
 stages {
@@ -87,6 +88,7 @@ stages {
             echo 'Creating deployment artifact...'
 
             sh '''
+                rm -rf artifact
                 mkdir -p artifact
 
                 cp index.html artifact/
@@ -97,8 +99,10 @@ stages {
                 echo "Environment: ${ENVIRONMENT}" >> artifact/build-info.txt
             '''
 
-            archiveArtifacts artifacts: 'artifact/**',
-                             fingerprint: true
+            archiveArtifacts(
+                artifacts: 'artifact/**',
+                fingerprint: true
+            )
         }
     }
 
@@ -118,10 +122,7 @@ stages {
             sh '''
                 docker rm -f ${CONTAINER_NAME}-dev 2>/dev/null || true
 
-                docker run -d \
-                    --name ${CONTAINER_NAME}-dev \
-                    -p ${DEV_PORT}:80 \
-                    ${IMAGE_NAME}:${BUILD_NUMBER}
+                docker run -d --name ${CONTAINER_NAME}-dev -p ${DEV_PORT}:80 ${IMAGE_NAME}:${BUILD_NUMBER}
             '''
         }
     }
@@ -142,10 +143,7 @@ stages {
             sh '''
                 docker rm -f ${CONTAINER_NAME}-test 2>/dev/null || true
 
-                docker run -d \
-                    --name ${CONTAINER_NAME}-test \
-                    -p ${TEST_PORT}:80 \
-                    ${IMAGE_NAME}:${BUILD_NUMBER}
+                docker run -d --name ${CONTAINER_NAME}-test -p ${TEST_PORT}:80 ${IMAGE_NAME}:${BUILD_NUMBER}
             '''
         }
     }
@@ -166,10 +164,7 @@ stages {
             sh '''
                 docker rm -f ${CONTAINER_NAME}-prod 2>/dev/null || true
 
-                docker run -d \
-                    --name ${CONTAINER_NAME}-prod \
-                    -p ${PROD_PORT}:80 \
-                    ${IMAGE_NAME}:${BUILD_NUMBER}
+                docker run -d --name ${CONTAINER_NAME}-prod -p ${PROD_PORT}:80 ${IMAGE_NAME}:${BUILD_NUMBER}
             '''
         }
     }
@@ -180,26 +175,16 @@ post {
     success {
 
         echo "Pipeline completed successfully for ${params.ENVIRONMENT}"
-
-        /*
-         * Email notification will be enabled after we configure
-         * Jenkins SMTP/email settings.
-         */
     }
 
     failure {
 
         echo "Pipeline FAILED for ${params.ENVIRONMENT}"
-
-        /*
-         * Email notification will be enabled after we configure
-         * Jenkins SMTP/email settings.
-         */
     }
 
     always {
 
-        echo 'Cleaning up temporary Docker resources...'
+        echo 'Cleaning up unused Docker images...'
 
         sh '''
             docker image prune -f || true
@@ -209,3 +194,4 @@ post {
 ```
 
 }
+
