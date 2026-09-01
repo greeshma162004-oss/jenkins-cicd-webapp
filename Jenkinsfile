@@ -6,7 +6,9 @@ pipeline {
  * We will configure the agent label after confirming the label
  * assigned to your Instance 2.
  */
-agent any
+agent {
+        label 'linux'
+    }
 
 parameters {
 
