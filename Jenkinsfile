@@ -1,6 +1,5 @@
 pipeline {
 
-```
 agent {
     label 'linux'
 }
@@ -191,7 +190,6 @@ post {
         '''
     }
 }
-```
 
 }
 
